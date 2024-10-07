@@ -18,14 +18,19 @@ function randomNumber(from, to) {
 const wordEl = document.getElementById('szo');
 const scoreEl = document.getElementById('eredmeny');
 
+const word = 'akasztófa';
 const guesses = new Set();
 
 function guess(char) {
+    guesses.add(char);
 
+    refreshWord();
 }
 
 function refreshWord() {
-
+    wordEl.innerHTML = word.split('').map((c) => `<span>
+    ${guesses.has(c) ? c : ''}
+</span>`).join('')
 }
 
 function refreshScore() {
@@ -45,6 +50,7 @@ document.addEventListener('keyup', (event) => {
 
 });
 
+refreshWord();
 
 
 

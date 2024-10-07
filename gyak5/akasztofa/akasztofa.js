@@ -18,4 +18,33 @@ function randomNumber(from, to) {
 const wordEl = document.getElementById('szo');
 const scoreEl = document.getElementById('eredmeny');
 
+const guesses = new Set();
+
+function guess(char) {
+
+}
+
+function refreshWord() {
+
+}
+
+function refreshScore() {
+
+}
+
+function showNextPartOfHangman() {
+
+}
+
+
+document.addEventListener('keyup', (event) => {
+    // console.log(event);
+    const char = event.key;
+
+    guess(char);
+
+});
+
+
+
 

@@ -25,6 +25,7 @@ function guess(char) {
     guesses.add(char);
 
     refreshWord();
+    refreshScore();
 }
 
 function refreshWord() {
@@ -33,12 +34,18 @@ function refreshWord() {
 </span>`).join('')
 }
 
+// const initialScore = 0;
 function refreshScore() {
-
+    scoreEl.innerHTML = `${wrongGuesses()}/9`
 }
 
 function showNextPartOfHangman() {
 
+}
+
+function wrongGuesses() {
+    return [...guesses].reduce((partialCount, char) =>
+        !word.includes(char) ? partialCount + 1 : partialCount, 0);
 }
 
 
@@ -51,6 +58,7 @@ document.addEventListener('keyup', (event) => {
 });
 
 refreshWord();
+refreshScore();
 
 
 

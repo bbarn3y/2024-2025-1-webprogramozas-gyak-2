@@ -17,6 +17,7 @@ function randomNumber(from, to) {
 // Init
 const wordEl = document.getElementById('szo');
 const scoreEl = document.getElementById('eredmeny');
+const svgEl = document.querySelector('svg');
 
 const word = 'akasztófa';
 const guesses = new Set();
@@ -26,6 +27,7 @@ function guess(char) {
 
     refreshWord();
     refreshScore();
+    showNextPartOfHangman();
 }
 
 function refreshWord() {
@@ -40,7 +42,9 @@ function refreshScore() {
 }
 
 function showNextPartOfHangman() {
-
+    for (let i = 0; i < wrongGuesses(); i++) {
+        svgEl.children[i].classList.add('rajzol');
+    }
 }
 
 function wrongGuesses() {

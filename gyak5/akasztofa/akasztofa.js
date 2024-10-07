@@ -28,11 +28,24 @@ function guess(char) {
     refreshWord();
     refreshScore();
     showNextPartOfHangman();
+
+    if (playerWin()) {
+        wordEl.classList.add('nyer');
+    }
+}
+
+function playerLost() {
+    return wrongGuesses() >= 9;
+}
+
+function playerWin() {
+    return word.split('').every((c) => guesses.has(c));
 }
 
 function refreshWord() {
-    wordEl.innerHTML = word.split('').map((c) => `<span>
-    ${guesses.has(c) ? c : ''}
+    wordEl.innerHTML = word.split('').map((c) => `<span
+        ${playerLost() && !guesses.has(c) ? 'class="hianyzo"' : ''}>
+    ${guesses.has(c) || playerLost() ? c : ''}
 </span>`).join('')
 }
 

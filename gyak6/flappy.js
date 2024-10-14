@@ -115,6 +115,14 @@ function draw() {
 function update(dt) {
     bird.update(dt);
     columns.forEach((c) => c.update(dt));
+
+    columns = columns.filter((c) => c.x >= -c.width)
+
+    if (columns.every((c) => c.x <= canvas.width - columnDistance)) {
+        addColumns();
+    }
+
+    // console.log(columns)
 }
 
 addColumns();

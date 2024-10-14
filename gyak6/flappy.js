@@ -22,6 +22,10 @@ class Bird {
     update(dt) {
         this.velocity += this.acceleration * dt / 1000;
         this.y += this.velocity * dt / 1000;
+
+        if (this.y >= canvas.height - this.height) {
+            gameOver = true;
+        }
     }
 }
 
@@ -43,12 +47,21 @@ let lastCycleTime = performance.now(); // (new Date()).now()
 
 const bird = new Bird(context, 50, 175, 50, 50, 100, 50);
 
+let gameOver = false;
+
 function cycle(now = performance.now()) {
     const dt = now - lastCycleTime;
     lastCycleTime = now;
 
     update(dt);
     draw();
+
+    if (gameOver) {
+        context.font = '50px Arial';
+        context.fillStyle = 'red';
+        context.fillText('Game Over!', 200, 175);
+        return;
+    }
 
     requestAnimationFrame(cycle);
 }

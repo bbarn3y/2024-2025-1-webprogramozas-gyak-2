@@ -1,5 +1,20 @@
 <?php
 
+function validate($input, &$errors) {
+    if (!isset($input['email']) ||
+        !filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = 'Please provide a valid e-mail address';
+    }
+
+}
+
+$errors = [];
+if (!empty($_POST)) {
+    validate($_POST, $errors);
+}
+
+// var_dump($errors);
+
 ?>
 
 <h3> Workshop registration form </h3>
@@ -7,8 +22,11 @@
 <form method="post">
     <div>
         <label for="email">Email:</label>
-        <input id="email" type="email" name="email">
+        <input id="email" name="email">
     </div>
+    <?php if(isset($errors['email'])): ?>
+        <div style="color: red"><?= $errors['email'] ?></div>
+    <?php endif; ?>
 
     <div>
         <p>Please select at least two sessions you’d like to attend:</p>

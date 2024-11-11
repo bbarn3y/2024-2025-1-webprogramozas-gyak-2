@@ -32,5 +32,21 @@ fclose($adultPersonsJSONFile);
 
 ?>
 
+<!--
+name,age
+Nagy Balázs, 20
+-->
+<?php
+$adultPersonsCSVFile = fopen("adult_persons.csv", "w");
+fwrite($adultPersonsCSVFile, "name,age" . PHP_EOL);
+foreach($adultPersons as $adultPerson) {
+    fwrite($adultPersonsCSVFile, $adultPerson["name"] . "," . $adultPerson["age"] . PHP_EOL);
+}
+fclose($adultPersonsCSVFile);
+
+
+
+
+
 
 

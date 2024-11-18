@@ -1,7 +1,7 @@
 {
     "6595cac2b5e2b": {
-        "name": "Álmost There",
-        "desc": "As Álmos Árpád, form Hungary and convert to Christianity.",
+        "name": "\u00c1lmost There",
+        "desc": "As \u00c1lmos \u00c1rp\u00e1d, form Hungary and convert to Christianity.",
         "game": "6595c8673b666",
         "id": "6595cac2b5e2b"
     },
@@ -12,7 +12,7 @@
         "id": "6595cac2b5e2f"
     },
     "6595cac2b5e32": {
-        "name": "Better than the Szent István",
+        "name": "Better than the Szent Istv\u00e1n",
         "desc": "As Hungary, have Miklos Horthy as a Naval commander and build a battleship.",
         "game": "6595c8673b661",
         "id": "6595cac2b5e32"
@@ -22,5 +22,11 @@
         "desc": "Reanimate 250,000 bloons to fight on your side using the Necromancer Wizard.",
         "game": "6595c8673b65a",
         "id": "6595cac2b5e35"
+    },
+    "673b136e75c70": {
+        "name": "SoD Achi #2",
+        "desc": "Placeholder Desc",
+        "game": "6595c8673b662",
+        "id": "673b136e75c70"
     }
 }

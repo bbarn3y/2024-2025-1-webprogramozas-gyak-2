@@ -1,5 +1,12 @@
 <link rel="stylesheet" href="style.css">
 
+<?php
+
+// session_start();
+// print_r($_SESSION['user']);
+
+?>
+
 <form action="authenticator.php" method="post">
     <div>
         <label for="username">Username: </label><br>

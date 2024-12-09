@@ -9,6 +9,55 @@
     <link rel="stylesheet" href="src/task.css">
 </head>
 
+<?php
+$errors = [];
+
+if (!empty($_GET)) {
+    // a
+    if ($_GET['username'] === '' ||
+        $_GET['email'] === '' ||
+        $_GET['hours'] === '' ||
+        $_GET['rating'] === '' ||
+        $_GET['opinion'] === '') {
+        $errors[] = 'A mezők kitöltése kötelező!';
+    }
+    // b
+    if (strlen($_GET['username']) < 8 || strlen($_GET['username']) > 20) {
+        $errors[] = 'A felhasználónév hossza 8 és 20 karakter között legyen!';
+    }
+    // c
+    if (!filter_var($_GET['email'], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'Az e-mail cím formátuma helytelen!';
+    }
+    // d
+    // floor($_GET['hours]) === $_GET['hours']
+    if ((int) $_GET['hours'] != (float) $_GET['hours']) {
+        $errors[] = 'A játszott órák száma csak egész szám lehet!';
+    }
+    // e
+    if ((int) $_GET['hours'] < 0 || (int) $_GET['hours'] > 999) {
+        $errors[] = 'A játszott órák száma 0 és 999 között legyen!';
+    }
+    // f
+    if (!in_array(
+        $_GET['rating'],
+        ['5-excellent', '4-good', '3-average', '2-bad', '1-terrible']
+    )) {
+        $errors[] = 'Helytelen értékelés!';
+    }
+    // g
+    if (
+        ($_GET['rating'] === '2-bad' && !str_contains(strtolower($_GET['opinion']), 'bug')) ||
+        ($_GET['rating'] === '1-terrible' && !str_contains(strtolower($_GET['opinion']), 'crash'))
+    ) {
+        $errors[] = 'Normális véleményt írj!';
+    }
+}
+
+
+
+?>
+
 <body>
     <header>
         <h1>5. Értékelés / Rating</h1>
@@ -47,17 +96,21 @@
                 <button type="submit">Küldés / Send</button>
             </div>
         </form>
+        <?php if(count($errors) > 0): ?>
         <div id="error">
             <img src="img/error.jpg">
             <ul>
-                <li>Error text 1</li>
-                <li>Error text 2</li>
-                <li>Error text 3</li>
+                <?php foreach($errors as $error): ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
             </ul>
         </div>
+        <?php endif; ?>
+        <?php if(count($errors) === 0): ?>
         <div id="success">
             <img src="img/success.jpg">
         </div>
+        <?php endif; ?>
     </div>
 
     <div id="testing">
